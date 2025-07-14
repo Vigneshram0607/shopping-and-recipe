@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrl: './shopping-edit.component.css'
 })
 export class ShoppingEditComponent {
+  @ViewChild('nameInput',{static:false}) nameInputRef: ElementRef;
+  @ViewChild('amtInput',{static:false}) amtInputRef: ElementRef;
+  @Output() shoppingData = new EventEmitter<{name: string, amount:number}>();
 
+  onAddItem(){
+    const nameInputValue = this.nameInputRef.nativeElement.value;
+    const amtInputValue = this.amtInputRef.nativeElement.value;
+    this.shoppingData.emit({name: nameInputValue, amount: amtInputValue});
+  }
 }

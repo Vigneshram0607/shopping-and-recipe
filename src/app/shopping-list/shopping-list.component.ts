@@ -13,4 +13,9 @@ export class ShoppingListComponent {
     new Ingredient('Bananas',100)
   ];
 
+  onAddItem(event: Event){
+    console.log(event);
+    this.ingredients.push(new Ingredient(event['name'], event['amount']))
+  }
+
 }
