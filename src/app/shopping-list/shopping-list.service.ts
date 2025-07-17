@@ -18,6 +18,12 @@ export class ShoppingListService{
         this.ingredients.push(new Ingredient(event['name'], event['amount']));
         this.ingredientsChanged.emit(this.ingredients.slice());
       }
+
+      addIngredients(ingredients: Ingredient[]){
+        console.log('INGREDIENTS: ',ingredients)
+        this.ingredients.push(...ingredients);
+        this.ingredientsChanged.emit(this.ingredients.slice());
+      }
       
 
     
