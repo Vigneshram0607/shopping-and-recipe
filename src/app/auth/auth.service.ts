@@ -62,12 +62,16 @@ export class AuthService {
 
     private handleError(errorRes: HttpErrorResponse) {
         let errorMessage = 'An unknown error occured.';
+        console.log('ERROR RESPONDSE: ',errorRes)
         if (!errorRes.error || !errorRes.error.error) {
             return throwError(errorMessage);
         }
         switch (errorRes.error.error.message) {
             case 'EMAIL_EXISTS':
                 errorMessage = 'The email address is already in use by another account.'
+                break;
+            case 'INVALID_LOGIN_CREDENTIALS':
+                errorMessage = 'Please check your E-Mail or Password.'
                 break;
             case 'OPERATION_NOT_ALLOWED':
                 errorMessage = 'Password sign-in is disabled for this project.'
