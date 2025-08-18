@@ -18,12 +18,11 @@ interface AuthResponseData{
 })
 
 export class AuthService{
-    API_KEY:string = 'AIzaSyCAd5HretJbcm4u2RTUwC5rJ4uIFGXilWY';
     constructor(private http: HttpClient){}
 
     signUp(email: string, password:string){
         return this.http.post<AuthResponseData>(
-            `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.API_KEY}`,
+            `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCAd5HretJbcm4u2RTUwC5rJ4uIFGXilWY`,
             {
                 email: email,
                 password: password,
