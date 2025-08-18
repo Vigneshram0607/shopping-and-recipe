@@ -6,43 +6,43 @@ import { AuthService } from "./auth.service";
     selector: 'app-auth',
     templateUrl: './auth.component.html',
 })
-export class AuthComponent{
-    isLoginMode:boolean = true;
+export class AuthComponent {
+    isLoginMode: boolean = true;
     isLoading: boolean = false;
-    error:string = null;
+    error: string = null;
 
-    constructor(private authService: AuthService){}
+    constructor(private authService: AuthService) { }
 
-    onSwitchMode(){
+    onSwitchMode() {
         this.isLoginMode = !this.isLoginMode;
     }
 
-    onSubmit(form: NgForm){
-        console.log('FORM: ',form.value);
-        if(!form.valid){
+    onSubmit(form: NgForm) {
+        console.log('FORM: ', form.value);
+        if (!form.valid) {
             return;
         }
         const email = form.value.email;
         const password = form.value.password;
 
         this.isLoading = true;
-        if(this.isLoginMode){
-//...
-        }else{
+        if (this.isLoginMode) {
+            //...
+        } else {
             this.authService.signUp(email, password).subscribe(
                 resData => {
-                    console.log('AUTH RESPONSE DATA: ',resData);
-                    this.isLoading=false;
+                    console.log('AUTH RESPONSE DATA: ', resData);
+                    this.isLoading = false;
                 },
-                error => {
-                    console.log('AUTHENTICATION ERROR: ',error);
-                    this.error = 'An Error occured!';
+                errorMessage => {
+                    console.log('AUTHENTICATION ERROR: ', errorMessage);
+                    this.error = errorMessage;
                     this.isLoading = false;
                 }
-        )
+            )
         }
 
-        
+
         form.reset();
     }
 }
